@@ -1,3 +1,5 @@
 OTA_update.py
 .catkin_workspace
+build/
+devel/
 
