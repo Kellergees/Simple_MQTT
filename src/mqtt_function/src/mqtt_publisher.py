@@ -23,7 +23,6 @@ global payload
 
 class message_stru:
     def __init__(self):
-        self.which_update = "status_update"
         self.weight = 0.0
         self.area = 0.0
         self.hours = 0.0
@@ -72,7 +71,7 @@ def payload_converter():
     
     global payload
 
-    output = "{" + payload.which_update 
+    output = "{" + "status_update"
     output += ":{cleaned_weight: " + str(payload.weight) 
     output += ", cleaned_area: " + str(payload.area) 
     output += ", op_hours: " + str(payload.hours) 
@@ -87,7 +86,8 @@ def payload_converter():
     output += ", is_OTA: " + str(payload.OTA) 
     output += ", is_activated: " + str(payload.activated) 
     output += ", is_error: " + str(payload.error) 
-    output += ", instruct_down: False" + "}" + "}"
+    output += ", instruct_down: False" + "}"
+    output += ", message_direction: {" + "message_direction: ros2app}" + "}"
 
     return output
 
