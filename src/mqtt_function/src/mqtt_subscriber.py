@@ -72,49 +72,63 @@ def on_message_in(client, userdata, msg):
     print(on_board_msg_dic.keys())
 
     message_flow = on_board_msg_dic["message_direction"]
+    message_flow_sub = message_flow["message_direction"]
 
-    rec_dic = on_board_msg_dic["pad_inst"]
-    print(rec_dic.keys())
+    if(message_flow_sub == "app2ros"):
+        if("emergency_inst" in on_board_msg_dic):
+            rec_dic = on_board_msg_dic["emergency_inst"]
+            print(rec_dic.keys())
 
-    if(message_flow == "app2ros"):
-        if("red_button_status" in rec_dic.keys()):
-            is_the_red_button_pressed = rec_dic["red_button_status"]
-            print(str(is_the_red_button_pressed) + ", red_button_checked...")
-        
-        if('m_mode_inst' in rec_dic.keys()):
-            is_forced_m_mode = rec_dic["m_mode_inst"]
-            print(str(is_forced_m_mode) + ", m_mode_checked...")
+            if("emergency_x" in rec_dic):
+                emergency_x = rec_dic["emergency_x"]
+            if("emergency_y" in rec_dic):
+                emergency_y = rec_dic["emergency_y"]
 
-        if('move_forwards' in rec_dic.keys()):
-            is_move_forwards = rec_dic["move_forwards"]
-            print(str(is_move_forwards) + ", move_forwards_checked...")
+            print("The spillage is located at (" + emergency_x + "," + emergency_y + ")")
 
-        if('move_backwards' in rec_dic.keys()):
-            is_move_backwards = rec_dic["move_backwards"]
-            print(str(is_move_backwards) + ", move_backwards_checked...")
+        if("pad_inst" in on_board_msg_dic):
 
-        if('turn_left' in rec_dic.keys()):
-            is_turn_left = rec_dic["turn_left"]
-            print(str(is_turn_left) + ", turn_left_checked...")
+            rec_dic = on_board_msg_dic["pad_inst"]
+            print(rec_dic.keys())
 
-        if('turn_right' in rec_dic.keys()):
-            is_turn_right = rec_dic["turn_right"]
-            print(str(is_turn_right) + ", turn_right_checked...")
+            if("red_button_status" in rec_dic.keys()):
+                is_the_red_button_pressed = rec_dic["red_button_status"]
+                print(str(is_the_red_button_pressed) + ", red_button_checked...")
+            
+            if('m_mode_inst' in rec_dic.keys()):
+                is_forced_m_mode = rec_dic["m_mode_inst"]
+                print(str(is_forced_m_mode) + ", m_mode_checked...")
 
-        if('current_gear' in rec_dic.keys()):
-            set_gear = rec_dic["current_gear"]
-            print(str(set_gear) + ", gear_status_checked...")
+            if('move_forwards' in rec_dic.keys()):
+                is_move_forwards = rec_dic["move_forwards"]
+                print(str(is_move_forwards) + ", move_forwards_checked...")
 
-        if('current_bucket' in rec_dic.keys()):
-            set_bucket = rec_dic["current_bucket"]
-            print(str(set_bucket) + ", bucket_height_checked...")
+            if('move_backwards' in rec_dic.keys()):
+                is_move_backwards = rec_dic["move_backwards"]
+                print(str(is_move_backwards) + ", move_backwards_checked...")
 
-        if('instruct_down' in rec_dic.keys()):
-            instruct_down = rec_dic["instruct_down"]
-            print(str(instruct_down))
+            if('turn_left' in rec_dic.keys()):
+                is_turn_left = rec_dic["turn_left"]
+                print(str(is_turn_left) + ", turn_left_checked...")
 
-        read_from_received_message_and_publish_to_ros(is_the_red_button_pressed, is_forced_m_mode, is_move_forwards, is_move_backwards, is_turn_left, is_turn_right, set_gear)
-        print("Data processed...")
+            if('turn_right' in rec_dic.keys()):
+                is_turn_right = rec_dic["turn_right"]
+                print(str(is_turn_right) + ", turn_right_checked...")
+
+            if('current_gear' in rec_dic.keys()):
+                set_gear = rec_dic["current_gear"]
+                print(str(set_gear) + ", gear_status_checked...")
+
+            if('current_bucket' in rec_dic.keys()):
+                set_bucket = rec_dic["current_bucket"]
+                print(str(set_bucket) + ", bucket_height_checked...")
+
+            if('instruct_down' in rec_dic.keys()):
+                instruct_down = rec_dic["instruct_down"]
+                print(str(instruct_down))
+
+            read_from_received_message_and_publish_to_ros(is_the_red_button_pressed, is_forced_m_mode, is_move_forwards, is_move_backwards, is_turn_left, is_turn_right, set_gear)
+            print("Data processed...")
     
 
 def send_to_topic():
