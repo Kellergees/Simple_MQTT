@@ -15,7 +15,7 @@ HOST = "homedev.bit-plat.com"
 PORT = 8883
 POST_PATH = "v1/devices/me/attributes"
 client = mqtt.Client(client_id="Unimelb_client_linux_sub")
-client.tls_set('/home/robert/Desktop/Project_phase_2/mqtt_test_v31/src/mqtt_function/mqtt_key/iot_mqtt.pem')
+client.tls_set('../mqtt_key/iot_mqtt.pem')
 client.tls_insecure_set(True)
 client.username_pw_set("PqwuPLhIwwVX0I9AaIPU")
 
@@ -84,7 +84,13 @@ def on_message_in(client, userdata, msg):
             if("emergency_y" in rec_dic):
                 emergency_y = rec_dic["emergency_y"]
 
-            print("The spillage is located at (" + emergency_x + "," + emergency_y + ")")
+            print("///////")
+            print("///////")
+            print("///////")
+            print("The spillage is located at (" + str(emergency_x) + "," + str(emergency_y) + ")")
+            print("///////")
+            print("///////")
+            print("///////")
 
         if("pad_inst" in on_board_msg_dic):
 
